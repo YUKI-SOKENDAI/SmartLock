@@ -60,6 +60,14 @@ def make_servo_pulse(gp_out, door_state):
 def roommate_statement(touch_id, member_trig, idlist):
 	pass # update member statement and act each indication 
 	
+def read_idlist(f_path):
+	# load idlist: dat file
+	data_file=open(f_path, mode='r')
+	data_lines=data_file.readlines()
+	print (data_lines)
+	
+	return data_lines
+
 
 if __name__ == '__main__':
     try:
@@ -89,8 +97,10 @@ if __name__ == '__main__':
 	
 	GPIO.output(servo_pwr, 0)
 	
-	
+	### NEED to change here ###
 	# read dat file(later)
+	#IDLIST_PATH = ""
+	#idlist = read_idlist(IDLIST_PATH)
         idlist = [b'012e4cd28e178979', b'012e48b1f6117294', b'012e48b1f61171ac', b'012e48b1f6117294', b'012e4cd257c3387a',b'01010a10c2172e27',b'012e48b1f6109680']
 
         #servo.start(0.0)
