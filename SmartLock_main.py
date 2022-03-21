@@ -63,34 +63,34 @@ def roommate_statement(touch_id, member_trig, idlist):
 
 if __name__ == '__main__':
 	try:
-	print ("Smart lock system boot!")
+		print ("Smart lock system boot!")
 		GPIO.setmode(GPIO.BCM)
 		gp_out = 4
-	servo_pwr = 5
-	door_state = 6
+		servo_pwr = 5
+		door_state = 6
+			
+		GPIO.setup(gp_out, GPIO.OUT)
+		GPIO.setup(servo_pwr, GPIO.OUT)
+		GPIO.setup(door_state, GPIO.OUT)
+			#servo = GPIO.PWM(gp_out, 400)
+			reader = NFCReader()
+		GPIO.output(servo_pwr, 0)
 		
-	GPIO.setup(gp_out, GPIO.OUT)
-	GPIO.setup(servo_pwr, GPIO.OUT)
-	GPIO.setup(door_state, GPIO.OUT)
-		#servo = GPIO.PWM(gp_out, 400)
-		reader = NFCReader()
-	GPIO.output(servo_pwr, 0)
-	
-	GPIO.output(door_state, DOOR_CLOSE)
-	
-	GPIO.output(servo_pwr, 1)
-	time.sleep(1)
-	make_servo_pulse(gp_out, DOOR_CLOSE)
-	make_servo_pulse(gp_out, DOOR_CLOSE)
-	
-	# define statement 
-	door_trig=DOOR_CLOSE
-	member_trig=NO_PERSON
-	
-	GPIO.output(servo_pwr, 0)
-	
-	
-	# read dat file(later)
+		GPIO.output(door_state, DOOR_CLOSE)
+		
+		GPIO.output(servo_pwr, 1)
+		time.sleep(1)
+		make_servo_pulse(gp_out, DOOR_CLOSE)
+		make_servo_pulse(gp_out, DOOR_CLOSE)
+		
+		# define statement 
+		door_trig=DOOR_CLOSE
+		member_trig=NO_PERSON
+		
+		GPIO.output(servo_pwr, 0)
+		
+		
+		# read dat file(later)
 		idlist = [b'012e4cd28e178979', b'012e48b1f6117294', b'012e48b1f61171ac', b'012e48b1f6117294', b'012e4cd257c3387a',b'01010a10c2172e27',b'012e48b1f6109680']
 
 		#servo.start(0.0)
@@ -131,12 +131,12 @@ if __name__ == '__main__':
 		   	pass
 	finally:
 		#servo.stop()
-	GPIO.output(gp_out, 0)
-	GPIO.output(door_state, 0)
-	
-	GPIO.output(servo_pwr, 1)
-	time.sleep(1)
-	make_servo_pulse(gp_out, DOOR_CLOSE)
-	make_servo_pulse(gp_out, DOOR_CLOSE)
-	GPIO.output(servo_pwr, 0)
-	print ("Smart lock system down...")
+		GPIO.output(gp_out, 0)
+		GPIO.output(door_state, 0)
+		
+		GPIO.output(servo_pwr, 1)
+		time.sleep(1)
+		make_servo_pulse(gp_out, DOOR_CLOSE)
+		make_servo_pulse(gp_out, DOOR_CLOSE)
+		GPIO.output(servo_pwr, 0)
+		print ("Smart lock system down...")
