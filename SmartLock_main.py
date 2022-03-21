@@ -20,22 +20,22 @@ FRESHMAN_ID = 0x08
  
 
 class NFCReader(object):
-    def on_connect(self, tag):
-        print("touched")
-        self.idm = binascii.hexlify(tag.idm)
-        return True
+	def on_connect(self, tag):
+		print("touched")
+		self.idm = binascii.hexlify(tag.idm)
+		return True
    # @retry
-    def read_id(self):
-        clf = nfc.ContactlessFrontend('usb')
-        try:
-            clf.connect(rdwr={'on-connect': self.on_connect})
-        except Exception as e:
-            self.idm = None
-            clf.close()
-        else:
-            clf.close()
-        finally:
-            clf.close()
+	def read_id(self):
+		clf = nfc.ContactlessFrontend('usb')
+		try:
+			clf.connect(rdwr={'on-connect': self.on_connect})
+		except Exception as e:
+			self.idm = None
+			clf.close()
+		else:
+			clf.close()
+		finally:
+			clf.close()
 
 def make_servo_pulse(gp_out, door_state):
 	# pulse width, 0.75ms=0deg(min), 1.75ms=90deg, 2.2ms=120deg(max) 
@@ -62,18 +62,18 @@ def roommate_statement(touch_id, member_trig, idlist):
 	
 
 if __name__ == '__main__':
-    try:
+	try:
 	print ("Smart lock system boot!")
-        GPIO.setmode(GPIO.BCM)
-        gp_out = 4
+		GPIO.setmode(GPIO.BCM)
+		gp_out = 4
 	servo_pwr = 5
 	door_state = 6
-        
+		
 	GPIO.setup(gp_out, GPIO.OUT)
 	GPIO.setup(servo_pwr, GPIO.OUT)
 	GPIO.setup(door_state, GPIO.OUT)
-        #servo = GPIO.PWM(gp_out, 400)
-        reader = NFCReader()
+		#servo = GPIO.PWM(gp_out, 400)
+		reader = NFCReader()
 	GPIO.output(servo_pwr, 0)
 	
 	GPIO.output(door_state, DOOR_CLOSE)
@@ -91,46 +91,46 @@ if __name__ == '__main__':
 	
 	
 	# read dat file(later)
-        idlist = [b'012e4cd28e178979', b'012e48b1f6117294', b'012e48b1f61171ac', b'012e48b1f6117294', b'012e4cd257c3387a',b'01010a10c2172e27',b'012e48b1f6109680']
+		idlist = [b'012e4cd28e178979', b'012e48b1f6117294', b'012e48b1f61171ac', b'012e48b1f6117294', b'012e4cd257c3387a',b'01010a10c2172e27',b'012e48b1f6109680']
 
-        #servo.start(0.0)
+		#servo.start(0.0)
 
-        while True:
-            print("touch card:")
-            reader.read_id()
-            cardid = reader.idm
-            # print(reader.idm)
-            print(cardid)
+		while True:
+			print("touch card:")
+			reader.read_id()
+			cardid = reader.idm
+			# print(reader.idm)
+			print(cardid)
 		
-            if cardid in idlist:
+			if cardid in idlist:
 		door_trig = ~door_trig
 		print ("door_trig : ", door_trig)
 		GPIO.output(servo_pwr, 1) # servo pwr supply ON
 		time.sleep(1)
 		
 		#servo.start(40)
-                #servo.ChangeDutyCycle(40)
+				#servo.ChangeDutyCycle(40)
 		#time.sleep(.02)
 		#servo.ChangeDutyCycle(80)
-                #time.sleep(.02)
-                #servo.ChangeDutyCycle(60)
+				#time.sleep(.02)
+				#servo.ChangeDutyCycle(60)
 		#time.sleep(.02)
 		
 		make_servo_pulse(gp_out, door_trig) # servo pulse make myself to avoid pulse width jitter effect
 		GPIO.output(door_state, door_trig)		
 
-                print(reader.idm)
-                print("released")
+				print(reader.idm)
+				print("released")
 
 		GPIO.output(servo_pwr, 0)
 		time.sleep(.5)
 		
 		roommate_statement(cardid, member_trig, idlist)
 		#servo.stop()
-            else:
-           	pass
-    finally:
-        #servo.stop()
+			else:
+		   	pass
+	finally:
+		#servo.stop()
 	GPIO.output(gp_out, 0)
 	GPIO.output(door_state, 0)
 	
