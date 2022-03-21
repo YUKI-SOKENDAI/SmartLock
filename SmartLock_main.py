@@ -73,7 +73,7 @@ if __name__ == '__main__':
 		GPIO.setup(servo_pwr, GPIO.OUT)
 		GPIO.setup(door_state, GPIO.OUT)
 			#servo = GPIO.PWM(gp_out, 400)
-			reader = NFCReader()
+		reader = NFCReader()
 		GPIO.output(servo_pwr, 0)
 		
 		GPIO.output(door_state, DOOR_CLOSE)
@@ -103,32 +103,33 @@ if __name__ == '__main__':
 			print(cardid)
 		
 			if cardid in idlist:
-		door_trig = ~door_trig
-		print ("door_trig : ", door_trig)
-		GPIO.output(servo_pwr, 1) # servo pwr supply ON
-		time.sleep(1)
+				door_trig = ~door_trig
+				print ("door_trig : ", door_trig)
+				GPIO.output(servo_pwr, 1) # servo pwr supply ON
+				time.sleep(1)
 		
-		#servo.start(40)
-				#servo.ChangeDutyCycle(40)
-		#time.sleep(.02)
-		#servo.ChangeDutyCycle(80)
+				#servo.start(40)
+						#servo.ChangeDutyCycle(40)
 				#time.sleep(.02)
-				#servo.ChangeDutyCycle(60)
-		#time.sleep(.02)
-		
-		make_servo_pulse(gp_out, door_trig) # servo pulse make myself to avoid pulse width jitter effect
-		GPIO.output(door_state, door_trig)		
+				#servo.ChangeDutyCycle(80)
+						#time.sleep(.02)
+						#servo.ChangeDutyCycle(60)
+				#time.sleep(.02)
+				
+				make_servo_pulse(gp_out, door_trig) # servo pulse make myself to avoid pulse width jitter effect
+				GPIO.output(door_state, door_trig)		
 
 				print(reader.idm)
 				print("released")
 
-		GPIO.output(servo_pwr, 0)
-		time.sleep(.5)
-		
-		roommate_statement(cardid, member_trig, idlist)
-		#servo.stop()
+				GPIO.output(servo_pwr, 0)
+				time.sleep(.5)
+				
+				roommate_statement(cardid, member_trig, idlist)
+				#servo.stop()
 			else:
-		   	pass
+		   		pass
+
 	finally:
 		#servo.stop()
 		GPIO.output(gp_out, 0)
