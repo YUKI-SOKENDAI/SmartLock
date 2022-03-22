@@ -1,17 +1,23 @@
-import nfc
+## default library
 import binascii
 import RPi.GPIO as GPIO
 import time
 import datetime
 #from retry import retry
+import numpy as np
 
+## external library
+import nfc
+import pandas as pd
+
+## my library
+
+
+## define system global variable 
+# door status
 DOOR_OPEN = 1
 DOOR_CLOSE = 0
-
-# OKADA_ID =
-# TAKAHASHI_ID =
-# ABE_ID =
-# FRESHMAN_ID =
+# room status
 NO_PERSON = 0x00
 OKADA_IN = 0x01
 TAKAHASHI_IN = 0x02
@@ -59,11 +65,24 @@ def make_servo_pulse(gp_out, door_state):
 
 def roommate_statement(touch_id, member_trig, idlist):
 	pass # update member statement and act each indication 
-	
+
+def read_card_id(data_path="./CardID/CardIDList.dat"):
+	card_info = pd.read_csv(data_path,encoding="utf-8")
+
+	list_array=[]
+	for list in card_info["ID"]:
+		# print ("list test: ",list)
+		print ("card ID(bytes): ",list.encode())
+		list_array.append(list.encode())
+	card_info["IDbyte"]=list_array
+	print (card_info["IDbyte"])
+
+	return card_info
 
 if __name__ == '__main__':
 	try:
 		print ("Smart lock system boot!")
+		print ("*** Start Smart key initial process")
 		GPIO.setmode(GPIO.BCM)
 		gp_out = 4
 		servo_pwr = 5
@@ -91,9 +110,21 @@ if __name__ == '__main__':
 		
 		
 		# read dat file(later)
+		card_info=read_card_id(data_path="./CardID/CardIDList.dat")
+		# print (card_info["ID"])
 		idlist = [b'012e4cd28e178979', b'012e48b1f6117294', b'012e48b1f61171ac', b'012e48b1f6117294', b'012e4cd257c3387a',b'01010a10c2172e27',b'012e48b1f6109680']
+		idlist2 = list(card_info["IDbyte"])
+		print ('card_info["IDbyte"]: \n',card_info["IDbyte"],type(card_info["IDbyte"][0]))
+		print ("idlist: \n",idlist,type(idlist[0]))
+		# print ("idlist2: \n",idlist2,type(idlist2[0]))
+
+
+
+		# print(card_info["ID"].encode()) ## nai
 
 		#servo.start(0.0)
+
+		print ("*** Start Smart key process")
 
 		while True:
 			print("touch card:")
@@ -101,13 +132,16 @@ if __name__ == '__main__':
 			cardid = reader.idm
 			# print(reader.idm)
 			print(cardid)
-		
-			if cardid in idlist:
+
+			# print (cardid in idlist2,cardid in list(idlist2),cardid in idlist, "Read Card ID: ", cardid, ", Card IDlist:",idlist2)
+
+			# if cardid in idlist:
+			if cardid in idlist2:
 				door_trig = ~door_trig
 				print ("door_trig : ", door_trig)
 				GPIO.output(servo_pwr, 1) # servo pwr supply ON
 				time.sleep(1)
-		
+
 				#servo.start(40)
 						#servo.ChangeDutyCycle(40)
 				#time.sleep(.02)
@@ -120,7 +154,8 @@ if __name__ == '__main__':
 				GPIO.output(door_state, door_trig)		
 
 				print(reader.idm)
-				print("released")
+				IDindex=idlist2.index(cardid)
+				print ("User Name: ", card_info["Name"][IDindex], " released")
 
 				GPIO.output(servo_pwr, 0)
 				time.sleep(.5)
@@ -128,7 +163,7 @@ if __name__ == '__main__':
 				roommate_statement(cardid, member_trig, idlist)
 				#servo.stop()
 			else:
-		   		pass
+		   		print ("No one exist in the ID lists.")
 
 	finally:
 		#servo.stop()
