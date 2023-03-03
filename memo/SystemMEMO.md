@@ -3,11 +3,29 @@
 
 
 ## システム構成
+### 環境
+- python ver.
+### python ライブラリ
+- 内部ライブラリ
+   - binascii
+   - RPi.GPIO
+   - time
+   - datetime
+   - numpy
+- 外部ライブラリ
+   - nfc
+   - pandas
+
+### 使用機材
+- Raspberry Pi 1B
+- ステッピングモーター（）
+- NFCカードリーダー（）
+
 ```mermaid
 flowchart TD;
     subgraph コントローラー
         CntNode0[Raspberry Pi 1B];
-        CntNode1[電流増幅&スイッチング回路];
+        CntNode1[電流増幅・スイッチング回路];
     end
     subgraph 電源
         100V単相;
@@ -34,26 +52,18 @@ flowchart TD;
 ```
 
 
-import binascii
-import RPi.GPIO as GPIO
-import time
-import datetime
-#from retry import retry
-import numpy as np
-
-## external library
-import nfc
-import pandas as pd
-
 ## 処理の流れ
 ```mermaid
 graph TD;
-     BootRaspberryPi->Initial 
-     USER--"card touch"-->;
-     USER--"arg2:output directory name"-->IPBSMscanDATAconvertLoop.sh;
-     IPBSMscanDATAconvertLoop.sh--"Fringe scan file (binary)"-->IPBSMdataConvertBinToText.sh;
-     IPBSMdataConvertBinToText.sh--"Create converted dat file"-->IPBSMscanDATAconvertLoop.sh;
-     IPBSMdataConvertBinToText.sh-->Node0[Python Process.];
-     Node0---Node2[Intenisty dependence parameter Fit.];
-     Node0---Node1[Modulation Fit.];
+     subgraph user_side
+       UsrNode0[Boot Raspberry Pi]
+       UsrNode1[Card touch]
+     end
+     
+     subgraph system_side
+       SysNode0[Initial process]
+     end
+     
+     UsrNode0->SysNode0 
+     
 ```
