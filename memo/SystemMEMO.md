@@ -25,7 +25,7 @@
 flowchart TD;
     subgraph コントローラー
         CntNode0[Raspberry Pi 1B];
-        CntNode1[電流増幅・スイッチング回路];
+        CntNode1[電流増幅/スイッチング回路];
     end
     subgraph 電源
         100V単相;
@@ -64,6 +64,6 @@ graph TD;
        SysNode0[Initial process]
      end
      
-     UsrNode0->SysNode0 
+     UsrNode0--->SysNode0 
      
 ```
