@@ -7,7 +7,7 @@
 flowchart TD;
     subgraph コントローラー
         RaspberryPi:1B;
-        電流増幅・スイッチング回路;
+        電流増幅＆スイッチング回路;
     end
     subgraph 電源
         100V単相;
@@ -21,7 +21,7 @@ flowchart TD;
         LED3;
     end
     100V単相===5V電源;
-    5V電源===電流増幅・スイッチング回路;
+    5V電源===電流増幅＆スイッチング回路;
     NFCカードリーダー--->|USBシリアル|RaspberryPi:1B;
     RaspberryPi:1B-.デジタルI/O-.->ステッピングモーター;
     RaspberryPi:1B-.デジタルI/O-.->LED1;
