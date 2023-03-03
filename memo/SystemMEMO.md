@@ -64,6 +64,10 @@ graph TD;
        SysNode0[Initial process]
      end
      
+     subgraph process_side
+       ProcNode0[Initial process]
+     end
+     
      UsrNode0--->SysNode0 
      
 ```
