@@ -27,10 +27,10 @@ flowchart TD;
     NFCカードリーダー--->|USBシリアル|RaspberryPi1B;
     RaspberryPi1B-.デジタルI/O-.->電流増幅スイッチング回路;
     電流増幅スイッチング回路====ステッピングモーター;
-    RaspberryPi1B-.デジタルI/O-.->ステッピングモーター;
-    RaspberryPi1B-.デジタルI/O-.->LED1;
-    RaspberryPi1B-.デジタルI/O-.->LED2;
-    RaspberryPi1B-.デジタルI/O-.->LED3;
+    RaspberryPi1B-.GPIO-.->ステッピングモーター;
+    RaspberryPi1B-.GPIO-.->LED1;
+    RaspberryPi1B-.GPIO-.->LED2;
+    RaspberryPi1B-.GPIO-.->LED3;
 ```
 
 ```mermaid
