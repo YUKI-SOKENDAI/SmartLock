@@ -26,7 +26,7 @@ flowchart TD;
     5V電源===電流増幅スイッチング回路;
     NFCカードリーダー--->|USBシリアル|RaspberryPi1B;
     RaspberryPi1B-.デジタルI/O-.->電流増幅スイッチング回路;
-    電流増幅スイッチング回路==.==ステッピングモーター;
+    電流増幅スイッチング回路====ステッピングモーター;
     RaspberryPi1B-.デジタルI/O-.->ステッピングモーター;
     RaspberryPi1B-.デジタルI/O-.->LED1;
     RaspberryPi1B-.デジタルI/O-.->LED2;
