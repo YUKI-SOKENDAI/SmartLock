@@ -6,8 +6,8 @@
 ```mermaid
 flowchart TD;
     subgraph コントローラー
-        RaspberryPi1B;
-        電流増幅スイッチング回路;
+        CntNode0[Raspberry Pi 1B];
+        CntNode1[電流増幅&スイッチング回路];
     end
     subgraph 電源
         100V単相;
@@ -23,18 +23,32 @@ flowchart TD;
         NFCカードリーダー;
     end
     100V単相===5V電源;
-    5V電源===電流増幅スイッチング回路;
-    NFCカードリーダー--->|USBシリアル|RaspberryPi1B;
-    RaspberryPi1B-.デジタルI/O-.->電流増幅スイッチング回路;
-    電流増幅スイッチング回路====ステッピングモーター;
-    RaspberryPi1B-.GPIO-.->ステッピングモーター;
-    RaspberryPi1B-.GPIO-.->LED1;
-    RaspberryPi1B-.GPIO-.->LED2;
-    RaspberryPi1B-.GPIO-.->LED3;
+    5V電源===CntNode1;
+    NFCカードリーダー--->|USBシリアル|CntNode0;
+    CntNode0-.GPIO-.->CntNode1;
+    CntNode1====ステッピングモーター;
+    CntNode0-.GPIO-.->ステッピングモーター;
+    CntNode0-.GPIO-.->LED1;
+    CntNode0-.GPIO-.->LED2;
+    CntNode0-.GPIO-.->LED3;
 ```
 
+
+import binascii
+import RPi.GPIO as GPIO
+import time
+import datetime
+#from retry import retry
+import numpy as np
+
+## external library
+import nfc
+import pandas as pd
+
+## 処理の流れ
 ```mermaid
 graph TD;
+     BootRaspberryPi->Initial 
      USER--"card touch"-->;
      USER--"arg2:output directory name"-->IPBSMscanDATAconvertLoop.sh;
      IPBSMscanDATAconvertLoop.sh--"Fringe scan file (binary)"-->IPBSMdataConvertBinToText.sh;
