@@ -15,10 +15,12 @@ flowchart TD;
     end
     subgraph 制御デバイス
         ステッピングモーター;
-        NFCカードリーダー;
         LED1;
         LED2;
         LED3;
+    end
+    subgraph 読み取りデバイス
+        NFCカードリーダー;
     end
     100V単相===5V電源;
     5V電源===電流増幅スイッチング回路;
