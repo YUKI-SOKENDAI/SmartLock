@@ -2,26 +2,31 @@
 
 
 
-
+## システム構成
 ```mermaid
 flowchart TD;
-    subgraph 上位コントローラー
-        PLC;
+    subgraph コントローラー
+        RaspberryPi:1B;
+        電流増幅・スイッチング回路;
     end
     subgraph 電源
         100V単相;
-        24V電源;
+        5V電源;
     end
-    subgraph センサー
-        フォトインタラプタ;
-        エンコーダー;
+    subgraph 制御デバイス
+        ステッピングモーター;
+        NFCカードリーダー;
+        LED1;
+        LED2;
+        LED3;
     end
-    100V単相===24V電源;
-    24V電源===モータードライバー;
-    PLC<-->|デジタルI/O|モータードライバー;
-    フォトインタラプタ-.デジタルI/O-.->PLC;
-    フォトインタラプタ-.デジタルI/O-.->モータードライバー;
-    エンコーダー-.デジタルI/O-.->PLC;
+    100V単相===5V電源;
+    5V電源===電流増幅・スイッチング回路;
+    NFCカードリーダー--->|USBシリアル|RaspberryPi:1B;
+    RaspberryPi:1B-.デジタルI/O-.->ステッピングモーター;
+    RaspberryPi:1B-.デジタルI/O-.->LED1;
+    RaspberryPi:1B-.デジタルI/O-.->LED2;
+    RaspberryPi:1B-.デジタルI/O-.->LED3;
 ```
 
 ```mermaid
