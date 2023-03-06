@@ -98,7 +98,7 @@ sequenceDiagram
             raspi->>circuit: LED3 ON/OFF (Door open/close status) 
         end
     
-        Note over user1 : 施術・開錠の確認
+        circuit-->>user1 : 施術・開錠状態の確認
         alt 施錠
             Note over user1 :退室
         else 開錠
