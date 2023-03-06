@@ -69,8 +69,10 @@ sequenceDiagram
     participant led as LED
     
     # hoge
-    user->>raspi: おはよう
-    raspi-->>user: こんにちは！！
+    user->>raspi: 電源ON
+    Note over raspi : 初期処理
+    raspi->>servo: Close
+    #raspi-->>user: こんにちは！！
     
     # hoge
     alt 正常終了
