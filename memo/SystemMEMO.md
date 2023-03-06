@@ -92,6 +92,8 @@ sequenceDiagram
         circuit-->>servo: Power ON
         raspi->>servo: Open/Close
         raspi->>circuit: LED3 OFF (Door open/close status)
+    else IDリストとミスマッチ
+    
     end
     
     
