@@ -61,20 +61,7 @@ flowchart TD;
 
 ## 処理の流れ
 ```mermaid
-graph TD;
-     subgraph user_side
-       UsrNode0[Boot Raspberry Pi]
-       UsrNode1[Card touch]
-     end
-     
-     subgraph system_side
-       SysNode0[Initial process]
-     end
-     
-     subgraph process_side
-       ProcNode0[Initial process]
-     end
-     
-     UsrNode0--->SysNode0 
-     
+sequenceDiagram
+    node0[ユーザー]->>node1[ラズパイ]: おはよう
+    node1-->>node0: こんにちは！！
 ```
