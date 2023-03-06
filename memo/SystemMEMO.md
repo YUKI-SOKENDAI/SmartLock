@@ -86,7 +86,7 @@ sequenceDiagram
     raspi->>-circuit: LED2 ON (電気錠システム稼働状態通知)
     circuit-->>user: 運転状況の確認
     
-    loop ループ処理
+    loop 電気錠による開錠・施錠処理
         user1->>nfc: NFCカードタッチ
         nfc-->>+raspi:ID取得
         Note over raspi: 登録IDリスト参照
