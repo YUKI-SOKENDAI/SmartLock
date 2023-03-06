@@ -96,6 +96,14 @@ sequenceDiagram
     
     end
     
+    Note over user1 : 施術・開錠の確認
+    
+    alt 施錠
+        Note over user1 :退室
+    else 開錠
+        Note over user1 :入室
+    
+    end
     
     #raspi-->>user: こんにちは！！
 
