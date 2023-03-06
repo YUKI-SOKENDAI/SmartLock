@@ -88,14 +88,14 @@ sequenceDiagram
     
     loop ループ処理
         user1->>nfc: NFCカードタッチ
-        nfc-->>raspi:ID取得
+        nfc-->>+raspi:ID取得
         Note over raspi: 登録IDリスト参照
         alt 登録IDリストとマッチ
             raspi->>circuit: トランジスタON
             circuit-->>servo: Power ON
             raspi->>servo: Open/Close (send PWM signal)
             raspi->>circuit: トランジスタOFF
-            raspi->>circuit: LED3 ON/OFF (Door open/close status) 
+            raspi->>-circuit: LED3 ON/OFF (Door open/close status) 
         end
     
         circuit-->>user1 : 施術・開錠状態の確認
