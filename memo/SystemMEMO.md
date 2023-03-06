@@ -76,6 +76,8 @@ sequenceDiagram
     
     raspi->>nfc: Connect NFC
     raspi->>circuit: LED1 OFF (Power status)
+    raspi->>circuit: トランジスタON
+    circuit-->>servo: Power ON
     raspi->>servo: Close
     raspi->>circuit: LED3 OFF (Door open/close status)
     Note over raspi : NFCIDリストの読み込み
@@ -86,6 +88,7 @@ sequenceDiagram
     nfc-->>raspi:登録IDリスト参照
     alt 
         raspi->>circuit: トランジスタON
+        circuit-->>servo: Power ON
         raspi->>servo: Open
         raspi->>circuit: LED3 OFF (Door open/close status)
     end
