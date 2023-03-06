@@ -40,7 +40,7 @@ flowchart TD;
 
 ### 環境
 - python3
-- 
+- ラズパイOS（rasbian ）
 ### python ライブラリ
 - 内部ライブラリ
    - binascii
