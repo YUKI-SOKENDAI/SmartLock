@@ -34,8 +34,7 @@ flowchart TD;
     NFCカードリーダー--->|USBシリアル|CntNode0;
     CntNode0-.GPIO-.->トランジスタ;
     トランジスタ====ステッピングモーター;
-    CntNode0-.GPIO(PWM)-.->ステッピングモーター;
-    CntNode0-.GPIO-.->LED1;
+    CntNode0-.PWMsignal-.->ステッピングモーター;
     CntNode0-.GPIO-.->LED2;
     CntNode0-.GPIO-.->LED3;
 ```
@@ -74,11 +73,12 @@ sequenceDiagram
     # hoge
     Note over user: 登録IDリストの作成
     user->>+raspi: 電源ON
+    user->>+circuit: 電源ON
+    Note over circuit: LED1 ON (Circuit Power status)
     Note over raspi : Run python script
     Note over raspi : python script：初期処理
     
     raspi->>nfc: Connect NFC
-    raspi->>circuit: LED1 OFF (Power status)
     raspi->>circuit: トランジスタON
     circuit-->>servo: Power ON (send PWM signal)
     raspi->>servo: Close
