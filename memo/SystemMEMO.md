@@ -71,7 +71,7 @@ sequenceDiagram
     
     # hoge
     Note over user: 登録IDリストの作成
-    user->>raspi: 電源ON
+    user->>+raspi: 電源ON
     Note over raspi : Run python script
     Note over raspi : python script：初期処理
     
@@ -82,7 +82,7 @@ sequenceDiagram
     raspi->>servo: Close
     raspi->>circuit: LED3 OFF (Door open/close status)
     Note over raspi : NFCIDリストの読み込み
-    raspi->>circuit: LED2 ON (電気錠システム稼働状態通知)
+    raspi->>-circuit: LED2 ON (電気錠システム稼働状態通知)
     circuit-->>user: 運転状況の確認
     
     loop ループ処理
