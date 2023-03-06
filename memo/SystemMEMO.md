@@ -1,6 +1,6 @@
 # ラズパイベース電気錠
 
-
+![代替テキスト](https://github.com/YUKI-SOKENDAI/SmartLock/blob/master/fig/IMG_20230221_215801.jpg "画像タイトル")
 
 ## システム構成
 ### 環境
