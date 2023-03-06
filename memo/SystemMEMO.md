@@ -62,11 +62,12 @@ flowchart TD;
 ## 処理の流れ
 ```mermaid
 sequenceDiagram
-    participant user as ユーザー
+    participant user as 開発者
+    participant user1 as ユーザー
     participant raspi as ラズパイ
     participant nfc as NFCリーダー
     participant servo as サーボモーター
-    participant led as LED
+    participant circuit as 電流増幅/スイッチング・インジケーター回路
     
     # hoge
     user->>raspi: 電源ON
@@ -74,10 +75,21 @@ sequenceDiagram
     Note over raspi : python script：初期処理
     
     raspi->>nfc: Connect NFC
-    raspi->>led: Power status ON
+    raspi->>circuit: LED1 OFF (Power status)
     raspi->>servo: Close
-    raspi->>led: Close status ON
-    led-->>user: 運転状況の確認
+    raspi->>circuit: LED3 OFF (Door open/close status)
+    Note over raspi : NFCIDリストの読み込み
+    raspi->>circuit: LED2 ON (電気錠システム稼働状態通知)
+    circuit-->>user: 運転状況の確認
+    
+    user1->>nfc: NFCカードタッチ
+    nfc-->>raspi:登録IDリスト参照
+    alt 
+        raspi->>circuit: トランジスタON
+        raspi->>servo: Open
+        raspi->>circuit: LED3 OFF (Door open/close status)
+    end
+    
     
     #raspi-->>user: こんにちは！！
     
