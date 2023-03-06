@@ -70,6 +70,7 @@ sequenceDiagram
     participant circuit as 電流増幅/スイッチング・インジケーター回路
     
     # hoge
+    Note over user: 登録IDリストの作成
     user->>raspi: 電源ON
     Note over raspi : Run python script
     Note over raspi : python script：初期処理
