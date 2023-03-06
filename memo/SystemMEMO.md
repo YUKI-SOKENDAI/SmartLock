@@ -6,6 +6,7 @@
 - Raspberry Pi 1B
 - ステッピングモーター（MG90S）
 - NFCカードリーダー（"PaSoRi" RC-S380/S ??）
+- 電流増幅/スイッチング回路（自作）
 
 ```mermaid
 flowchart TD;
