@@ -12,14 +12,16 @@
 flowchart TD;
     subgraph コントローラー
         CntNode0[Raspberry Pi 1B];
-        CntNode1[電流増幅/スイッチング回路];
     end
     subgraph 電源
         100V単相;
         5V電源;
     end
-    subgraph 制御デバイス
+    subgraph アクチュエーター
         ステッピングモーター;
+    end
+    subgraph 電流増幅/スイッチング/インジケーター回路
+        トランジスタ;
         LED1;
         LED2;
         LED3;
@@ -30,9 +32,9 @@ flowchart TD;
     100V単相===5V電源;
     5V電源===CntNode1;
     NFCカードリーダー--->|USBシリアル|CntNode0;
-    CntNode0-.GPIO-.->CntNode1;
-    CntNode1====ステッピングモーター;
-    CntNode0-.GPIO-.->ステッピングモーター;
+    CntNode0-.GPIO-.->トランジスタ;
+    トランジスタ====ステッピングモーター;
+    CntNode0-.GPIO(PWM)-.->ステッピングモーター;
     CntNode0-.GPIO-.->LED1;
     CntNode0-.GPIO-.->LED2;
     CntNode0-.GPIO-.->LED3;
