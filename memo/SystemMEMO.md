@@ -86,20 +86,14 @@ sequenceDiagram
     
     user1->>nfc: NFCカードタッチ
     nfc-->>raspi:登録IDリスト参照
-    alt 
+    alt IDリストとマッチ
         raspi->>circuit: トランジスタON
         circuit-->>servo: Power ON
-        raspi->>servo: Open
+        raspi->>servo: Open/Close
         raspi->>circuit: LED3 OFF (Door open/close status)
     end
     
     
     #raspi-->>user: こんにちは！！
-    
-    # hoge
-    alt 正常終了
-        Note over user : 取得データ表示
-    else エラー
-        Note over user : エラー表示
-    end
+
 ```
