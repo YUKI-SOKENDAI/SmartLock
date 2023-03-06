@@ -1,39 +1,11 @@
-
-
-# ラズパイベース電気錠
+# ラズパイ駆動の電気錠
 
 
 ## システム構成
-### 環境
-- python ver.
-### python ライブラリ
-- 内部ライブラリ
-   - binascii
-   - RPi.GPIO
-   - time
-   - datetime
-   - numpy
-- 外部ライブラリ
-   - nfc
-   - pandas
-
-
-## 設置外観
-
-| Left align | Right align | Center align |
-|:-----------|------------:|:------------:|
-|<img width="400" src="https://github.com/YUKI-SOKENDAI/SmartLock/blob/master/fig/IMG_20230221_215801.jpg">|<img width="400" src="https://github.com/YUKI-SOKENDAI/SmartLock/blob/master/fig/IMG_20230221_215803.jpg">|<img width="400" src="https://github.com/YUKI-SOKENDAI/SmartLock/blob/master/fig/IMG_20230221_215817.jpg">|
-|<img width="400" src="https://github.com/YUKI-SOKENDAI/SmartLock/blob/master/fig/IMG_20230221_215901.jpg">|<img width="400" src="https://github.com/YUKI-SOKENDAI/SmartLock/blob/master/fig/IMG_20230221_215906.jpg">|<img width="400" src="https://github.com/YUKI-SOKENDAI/SmartLock/blob/master/fig/IMG_20230221_215921.jpg">|
-
-
-<img width="400" src="https://github.com/YUKI-SOKENDAI/SmartLock/blob/master/fig/IMG_20230221_215914.jpg">
-
-
-
 ### 使用機材
 - Raspberry Pi 1B
-- ステッピングモーター（）
-- NFCカードリーダー（）
+- ステッピングモーター（MG90S）
+- NFCカードリーダー（"PaSoRi" RC-S380/S ??）
 
 ```mermaid
 flowchart TD;
@@ -64,6 +36,33 @@ flowchart TD;
     CntNode0-.GPIO-.->LED2;
     CntNode0-.GPIO-.->LED3;
 ```
+
+
+### 環境
+- python3
+- 
+### python ライブラリ
+- 内部ライブラリ
+   - binascii
+   - RPi.GPIO
+   - time
+   - datetime
+   - numpy
+- 外部ライブラリ
+   - nfc
+   - pandas
+
+
+## 設置外観
+
+| Left align | Right align | Center align |
+|:-----------|------------:|:------------:|
+|<img width="400" src="https://github.com/YUKI-SOKENDAI/SmartLock/blob/master/fig/IMG_20230221_215801.jpg">|<img width="400" src="https://github.com/YUKI-SOKENDAI/SmartLock/blob/master/fig/IMG_20230221_215803.jpg">|<img width="400" src="https://github.com/YUKI-SOKENDAI/SmartLock/blob/master/fig/IMG_20230221_215817.jpg">|
+|<img width="400" src="https://github.com/YUKI-SOKENDAI/SmartLock/blob/master/fig/IMG_20230221_215901.jpg">|<img width="400" src="https://github.com/YUKI-SOKENDAI/SmartLock/blob/master/fig/IMG_20230221_215906.jpg">|<img width="400" src="https://github.com/YUKI-SOKENDAI/SmartLock/blob/master/fig/IMG_20230221_215921.jpg">|
+
+
+<img width="400" src="https://github.com/YUKI-SOKENDAI/SmartLock/blob/master/fig/IMG_20230221_215914.jpg">
+
 
 
 ## 処理の流れ
