@@ -19,6 +19,11 @@
 
 
 ## 設置外観
+
+| Left align | Right align | Center align |
+|:-----------|------------:|:------------:|
+| | | |
+
 <img width="400" src="https://github.com/YUKI-SOKENDAI/SmartLock/blob/master/fig/IMG_20230221_215801.jpg">
 <img width="400" src="https://github.com/YUKI-SOKENDAI/SmartLock/blob/master/fig/IMG_20230221_215803.jpg">
 <img width="400" src="https://github.com/YUKI-SOKENDAI/SmartLock/blob/master/fig/IMG_20230221_215817.jpg">
