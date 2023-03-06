@@ -60,6 +60,7 @@ flowchart TD;
    - pandas
 
 ## 処理の流れ
+### ラズパイ立ち上げ時の処理
 ```mermaid
 sequenceDiagram
     participant user as 開発者
@@ -86,6 +87,8 @@ sequenceDiagram
     circuit-->>user: 運転状況の確認
 ``` 
 
+
+### ラズパイ立ち上げ後の処理
 ```mermaid
     participant user1 as ユーザー
     participant raspi as ラズパイ
