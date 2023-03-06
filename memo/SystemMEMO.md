@@ -62,6 +62,6 @@ flowchart TD;
 ## 処理の流れ
 ```mermaid
 sequenceDiagram
-    node0[ユーザー]->>node1[ラズパイ]: おはよう
-    node1-->>node0: こんにちは！！
+    ユーザー->>ラズパイ: おはよう
+    ラズパイ-->>ユーザー: こんにちは！！
 ```
