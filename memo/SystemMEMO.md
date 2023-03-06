@@ -62,13 +62,11 @@ flowchart TD;
 ## 処理の流れ
 ```mermaid
 sequenceDiagram
-    participant user ユーザー
+    participant user as ユーザー
     participant raspi as ラズパイ
     participant nfc as NFCリーダー
     participant servo as サーボモーター
-    participant led1 as LED1
-    participant led2 as LED2
-    participant led3 as LED3
+    participant led as LED
     
     # hoge
     user->>raspi: おはよう
