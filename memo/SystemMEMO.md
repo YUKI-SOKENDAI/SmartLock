@@ -98,23 +98,32 @@ sequenceDiagram
     participant servo as サーボモーター
     participant circuit as 電流増幅/スイッチング・インジケーター回路
 
-    loop 電気錠による開錠・施錠処理
-        user1->>nfc: NFCカードタッチ
-        nfc-->>+raspi:ID取得
-        Note over raspi: 登録IDリスト参照
-        alt 登録IDリストとマッチ
-            raspi->>circuit: トランジスタON
-            circuit-->>servo: Power ON
-            raspi->>servo: Open/Close (send PWM signal)
-            raspi->>circuit: トランジスタOFF
-            raspi->>-circuit: LED3 ON/OFF (Door open/close status) 
-        end
+    alt NFCカードを使った開錠・施錠
+        loop 電気錠による開錠・施錠処理
+            user1->>nfc: NFCカードタッチ
+            nfc-->>+raspi:ID取得
+            Note over raspi: 登録IDリスト参照
+            alt 登録IDリストとマッチ
+                raspi->>circuit: トランジスタON
+                circuit-->>servo: Power ON
+                raspi->>servo: Open/Close (send PWM signal)
+                raspi->>circuit: トランジスタOFF
+                raspi->>-circuit: LED3 ON/OFF (Door open/close status) 
+            end
     
-        circuit-->>user1 : 施術・開錠状態の確認
+            circuit-->>user1 : 施術・開錠状態の確認
+            alt 施錠
+                Note over user1 :退室
+            else 開錠
+                Note over user1 :入室
+            end
+        end
+    else 物理鍵を使った開錠・施錠
         alt 施錠
             Note over user1 :退室
         else 開錠
             Note over user1 :入室
         end
     end
+        
 ```
