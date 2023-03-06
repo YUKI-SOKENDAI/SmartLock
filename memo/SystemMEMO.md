@@ -85,24 +85,22 @@ sequenceDiagram
     raspi->>circuit: LED2 ON (電気錠システム稼働状態通知)
     circuit-->>user: 運転状況の確認
     
-    user1->>nfc: NFCカードタッチ
-    nfc-->>raspi:登録IDリスト参照
-    alt IDリストとマッチ
-        raspi->>circuit: トランジスタON
-        circuit-->>servo: Power ON
-        raspi->>servo: Open/Close
-        raspi->>circuit: LED3 OFF (Door open/close status)
-    else IDリストとミスマッチ
+    loop ループ処理
+        user1->>nfc: NFCカードタッチ
+        nfc-->>raspi:登録IDリスト参照
+        alt IDリストとマッチ
+            raspi->>circuit: トランジスタON
+            circuit-->>servo: Power ON
+            raspi->>servo: Open/Close
+            raspi->>circuit: LED3 ON/OFF (Door open/close status) 
+        end
     
-    end
-    
-    Note over user1 : 施術・開錠の確認
-    
-    alt 施錠
-        Note over user1 :退室
-    else 開錠
-        Note over user1 :入室
-    
+        Note over user1 : 施術・開錠の確認
+        alt 施錠
+            Note over user1 :退室
+        else 開錠
+            Note over user1 :入室
+        end
     end
     
     #raspi-->>user: こんにちは！！
