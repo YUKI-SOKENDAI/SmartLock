@@ -2,6 +2,8 @@
 
 ![代替テキスト](https://github.com/YUKI-SOKENDAI/SmartLock/blob/master/fig/IMG_20230221_215801.jpg "画像タイトル")
 
+<img width="50" src="https://github.com/YUKI-SOKENDAI/SmartLock/blob/master/fig/IMG_20230221_215801.jpg">
+
 ## システム構成
 ### 環境
 - python ver.
