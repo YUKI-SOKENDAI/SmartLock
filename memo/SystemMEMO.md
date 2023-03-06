@@ -87,7 +87,8 @@ sequenceDiagram
     
     loop ループ処理
         user1->>nfc: NFCカードタッチ
-        nfc-->>raspi:登録IDリスト参照
+        nfc-->>raspi:ID取得
+        Note over raspi: 登録IDリスト参照
         alt IDリストとマッチ
             raspi->>circuit: トランジスタON
             circuit-->>servo: Power ON
