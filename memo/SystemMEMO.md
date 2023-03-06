@@ -77,6 +77,7 @@ sequenceDiagram
     raspi->>led: Power status ON
     raspi->>servo: Close
     raspi->>led: Close status ON
+    led-->>user: 運転状況の確認
     
     #raspi-->>user: こんにちは！！
     
