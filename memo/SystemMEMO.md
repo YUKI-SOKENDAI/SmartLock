@@ -30,7 +30,7 @@ flowchart TD;
         NFCカードリーダー;
     end
     100V単相===5V電源;
-    5V電源===CntNode1;
+    5V電源===トランジスタ;
     NFCカードリーダー--->|USBシリアル|CntNode0;
     CntNode0-.GPIO-.->トランジスタ;
     トランジスタ====ステッピングモーター;
