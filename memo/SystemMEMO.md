@@ -89,6 +89,18 @@ sequenceDiagram
 
 
 ### ラズパイ立ち上げ後の処理
+
+```mermaid
+    participant user1 as ユーザー
+    participant raspi as ラズパイ
+    participant nfc as NFCリーダー
+    participant servo as サーボモーター
+    participant circuit as 電流増幅/スイッチング・インジケーター回路
+    
+    
+```
+
+
 ```mermaid
 
     participant user1 as ユーザー
