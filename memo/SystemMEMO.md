@@ -72,9 +72,12 @@ sequenceDiagram
     user->>raspi: 電源ON
     Note over raspi : Run python script
     Note over raspi : python script：初期処理
-    raspi->>servo: Close
-    raspi->>led: Power status ON
+    
     raspi->>nfc: Connect NFC
+    raspi->>led: Power status ON
+    raspi->>servo: Close
+    raspi->>led: Close status ON
+    
     #raspi-->>user: こんにちは！！
     
     # hoge
