@@ -90,6 +90,7 @@ sequenceDiagram
 
 ### ラズパイ立ち上げ後の処理
 ```mermaid
+
     participant user1 as ユーザー
     participant raspi as ラズパイ
     participant nfc as NFCリーダー
