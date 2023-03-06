@@ -63,7 +63,6 @@ flowchart TD;
 ```mermaid
 sequenceDiagram
     participant user as 開発者
-    participant user1 as ユーザー
     participant raspi as ラズパイ
     participant nfc as NFCリーダー
     participant servo as サーボモーター
@@ -85,7 +84,15 @@ sequenceDiagram
     Note over raspi : NFCIDリストの読み込み
     raspi->>-circuit: LED2 ON (電気錠システム稼働状態通知)
     circuit-->>user: 運転状況の確認
-    
+``` 
+
+```mermaid
+    participant user1 as ユーザー
+    participant raspi as ラズパイ
+    participant nfc as NFCリーダー
+    participant servo as サーボモーター
+    participant circuit as 電流増幅/スイッチング・インジケーター回路
+
     loop 電気錠による開錠・施錠処理
         user1->>nfc: NFCカードタッチ
         nfc-->>+raspi:ID取得
@@ -105,7 +112,4 @@ sequenceDiagram
             Note over user1 :入室
         end
     end
-    
-    #raspi-->>user: こんにちは！！
-
 ```
