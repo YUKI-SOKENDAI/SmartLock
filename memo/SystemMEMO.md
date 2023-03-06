@@ -49,7 +49,7 @@ flowchart TD;
    - datetime
    - numpy
 - 外部ライブラリ
-   - nfc
+   - nfc （NFCリーダー制御用ライブラリ）
    - pandas
 
 
