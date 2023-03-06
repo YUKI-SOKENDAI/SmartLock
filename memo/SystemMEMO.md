@@ -40,6 +40,7 @@ flowchart TD;
 
 <img width="400" src="https://github.com/YUKI-SOKENDAI/SmartLock/blob/master/fig/IMG_20230221_215906.jpg">
 
+| | | |
 |:-----------|------------:|:------------:|
 |<img width="400" src="https://github.com/YUKI-SOKENDAI/SmartLock/blob/master/fig/IMG_20230221_215801.jpg">|<img width="400" src="https://github.com/YUKI-SOKENDAI/SmartLock/blob/master/fig/IMG_20230221_215803.jpg">|<img width="400" src="https://github.com/YUKI-SOKENDAI/SmartLock/blob/master/fig/IMG_20230221_215817.jpg">|
 |<img width="400" src="https://github.com/YUKI-SOKENDAI/SmartLock/blob/master/fig/IMG_20230221_215901.jpg">|<img width="400" src="https://github.com/YUKI-SOKENDAI/SmartLock/blob/master/fig/IMG_20230221_215914.jpg">|<img width="400" src="https://github.com/YUKI-SOKENDAI/SmartLock/blob/master/fig/IMG_20230221_215921.jpg">|
